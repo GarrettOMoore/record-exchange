@@ -1,3 +1,16 @@
-<h2>Profile Page</h2>
-
+<nav>
 <a href="/">Home</a>
+<a href="#">MyCollection</a>
+<a href="/profile">Profile</a>
+<a href="#">Messages</a>
+<a href="/auth/signup">Signup</a>
+<a href="/auth/login">Login</a>
+<a href="/auth/logout">Logout</a>
+</nav>
+
+<main class="profile-body">
+    <%= currentUser.name %> <br>
+    <%= currentUser.location %> <br>
+    User Rating: 3
+</main>
+
