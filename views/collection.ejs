@@ -13,15 +13,17 @@
 <h1 class="page-name"> Collection For <%= user.name%>: </h1>
 <section class="collection-main">
 <% releases.forEach(function(release) { %>
+<div id="collection-each">
 <div class="results-img-box"><img id="result-img" src=<%= release.imgUrl %>></div>
-   <div class="collection-info">
-    <%= release.title %> <br>
-    <%= release.year %> <br>
-    <%= release.label %> <br>
-    <%= release.genre %> <br>
-    </div>
+<!--  <div class="collection-info">
+<%= release.title %> <br>
+<%= release.year %> <br>
+<%= release.label %> <br>
+<%= release.genre %> <br>
+</div> -->
     <form id="delete-btn" method="POST" action="/releases/<%= release.id %>?_method=DELETE">
         <input class="btn" type="submit" value="Remove From Collection">
     </form>
+    </div>
 <% }) %>
 </section>

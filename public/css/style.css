@@ -1,3 +1,8 @@
+body, html {
+    margin: 2px;
+    padding: 2px;
+}
+
 .main-header {
     text-align: center;
     font-family: 'Archivo Black', sans-serif;
@@ -117,6 +122,7 @@ nav {
 }
 
 #delete-btn {
+    margin-top: 30px;
     font-family: 'Poiret One', cursive;
     display: inline-block;
     border: 2px solid black;
@@ -124,10 +130,16 @@ nav {
 
 .results-img-box {
     margin-top: 80px;
+    border: 6px solid black;
+    box-shadow: -11px 10px 38px 0px rgba(0,0,0,0.75);
 }
 
 .collection-main {
+    display: flex;
+    justify-content: space-around;
     text-align: center;
+    flex-flow: row wrap;
+
 }
 
 .collection-info {
@@ -135,4 +147,12 @@ nav {
     font-size: 20px;
     font-family: 'Poiret One', cursive;
     margin-top: 30px;
+}
+
+#collection-each {
+    margin-top: 100px;
+    
+    width: 312px;
+    height: 312px;
+    
 }
