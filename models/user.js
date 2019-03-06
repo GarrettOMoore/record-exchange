@@ -49,6 +49,7 @@
     });
     user.associate = function(models) {
       // associations can be defined here
+      models.user.belongsToMany(models.release, {through: "usersReleases"});
     };
   
     // Function to compare entered password to hashed password

@@ -11,11 +11,15 @@
     font-size: 34px;
 }
 
+.profile-name {
+    font-size: 50px;
+}
+
 .profile-body {
     margin-top: 100px;
     text-align: center;
     font-family: 'Poiret One', cursive;
-    font-size: 50px;
+    font-size: 40px;
 
 }
 .name-display {
@@ -28,7 +32,7 @@ nav {
     text-align: center;
     font-family: 'Poiret One', cursive;
     font-size: 28px;
-    letter-spacing: 8px;
+    letter-spacing: 6px;
 }
 
 .main-img {
@@ -37,12 +41,98 @@ nav {
     font-family: 'Poiret One', cursive;
 }
 
+#ongaku {
+    border: 200px solid rgba(5, 10, 5, 0.8 );
+    border-radius: 50% 50% 50% 50%;;
+}
 .search-box {
-    margin-top: 200px;
+    margin-top: 30px;
 }
 
 .main-search {
     font-size: 30px;
     text-align: center;
     font-family: 'Poiret One', cursive;
+}
+
+#result-img {
+    width: 300px;
+    height: 300px;
+}
+
+.search-results {
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+}
+
+.btn-main {
+    margin-bottom: 30px;
+}
+
+.artist-img {
+    height: 600px;
+    width: 600px;
+    margin-top: 100px;
+}
+.artist-name {
+    margin-top: 50px;
+    font-size: 40px;
+    font-family: 'Poiret One', cursive;
+    margin-bottom: 100px;
+}
+
+.page-name {
+    margin-top: 70px;
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+}
+
+#show-head {
+    font-family: 'Poiret One', cursive;
+    text-align: center;
+}
+
+#map {
+    margin: 0 auto;
+    border: 10px solid black;
+    border-radius: 30%;
+    width: 600px;
+    height: 600px;
+}
+
+#map-form {
+    padding: 30px;
+    font-family: 'Poiret One', cursive;
+    margin: 0 auto;
+    margin-left: 330px;
+    margin-top: 100px;
+}
+.marker {
+    background-size: contain;
+}
+
+#message {
+    text-align: center;
+}
+
+#delete-btn {
+    font-family: 'Poiret One', cursive;
+    display: inline-block;
+    border: 2px solid black;
+}
+
+.results-img-box {
+    margin-top: 80px;
+}
+
+.collection-main {
+    text-align: center;
+}
+
+.collection-info {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Poiret One', cursive;
+    margin-top: 30px;
 }

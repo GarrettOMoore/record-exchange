@@ -1,0 +1,21 @@
+<nav>
+<a href="/">Home</a>
+<a href="/collection">MyCollection</a>
+<a href="/profile">Profile</a>
+<a href="/messages">Messages</a>
+<a href="/map">Map</a>
+<a href="/auth/signup">Signup</a>
+<a href="/auth/login">Login</a>
+
+</nav>
+
+<h1 id="show-head">Area Record Shops</h1>
+<p id="message"></p>
+<h3 id="name"></h3>
+
+<div id="map">
+</div>
+<script>
+const markerCoords = <%- JSON.stringify(markers) %>
+</script>
+<script src="/js/app.js"></script>
