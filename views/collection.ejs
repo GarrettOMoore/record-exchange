@@ -1,20 +1,23 @@
+<span class="logo-img">
+    <img id="logo"src="/img/record-ex.png">
+</span>
 <h2 class="sub-header">A place to share, trade, and talk about the music that you love.</h2>
-
+<span class="logo-img">
+    <img id="logo2"src="/img/record-ex.png">
+</span>
 <nav>
-<a href="/">Home</a>
-<a href="/collection">MyCollection</a>
-<a href="/profile">Profile</a>
-<a href="/messages">Messages</a>
-<a href="/map">Map</a>
-
-
+    <a href="/">Home</a>
+    <a href="/collection">MyCollection</a>
+    <a href="/profile">Profile</a>
+    <a href="/messages">Messages</a>
+    <a href="/map">Map</a>
 </nav>
-
+<% console.log(releases)%>
 <h1 class="page-name"> <%= user.name%>'s Collection: </h1>
 <section class="collection-main">
     <% releases.forEach(function(release, i) { %>
-    <div id="myModal<%= i %>" class="modal">
-        <div class="modal-content">
+        <div id="myModal<%= i %>" class="modal">
+            <div class="modal-content">
             <div class="modal-header">
                 <span class="close">&times;</span>
                 <h2>Release Info:</h2>
@@ -25,21 +28,17 @@
                 <%let label = release.label%>
                 <% let splitLab = label.split(',')%>
                 <%= splitLab[0] %>
-                <%console.log(splitLab)%>
                 <%= release.genre %> <br></p>
-                <% console.log(release.label) %>
             </div>
             <div class="modal-footer">
                 <%let artist = release.title%>
                 <% let splitArt = artist.split('-',)%>
-                <%console.log("AAARRTTIISSTT" + splitArt[0])%>
                 <h3 class="footer-text">Click <a href="/search?search= + <%= splitArt[0] %>">here</a> to see more from this artist.</h3>
             </div>
+            </div>
         </div>
-
-    </div>
 <div class="collection-each">
-<div class="results-img-box"><img class="result-img" src=<%= release.imgUrl %>></div>
+    <div class="results-img-box"><img class="result-img" src=<%= release.imgUrl %>></div>
 
 <!--<div class="collection-info">
 <%= release.title %> <br>
@@ -54,7 +53,8 @@
     <form id="move-trade-btn" method="POST" action="#">
         <input class="btn" type="submit" value="Add to Trade">
     </form>
-    </div>
-<% }) %>
+</div>
+    <% }) %>
 </section>
+
 <script src="/js/collection.js"></script>

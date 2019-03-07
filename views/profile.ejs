@@ -1,37 +1,40 @@
+<span class="logo-img">
+    <img id="logo"src="/img/record-ex.png">
+</span>
 <h2 class="sub-header">A place to share, trade, and talk about the music that you love.</h2>
+<span class="logo-img">
+    <img id="logo2"src="/img/record-ex.png">
+</span>
 
 <nav>
-<a href="/">Home</a>
-<a href="/collection">MyCollection</a>
-<a href="/profile">Profile</a>
-<a href="/messages">Messages</a>
-<a href="/map">Map</a>
-
+    <a href="/">Home</a>
+    <a href="/collection">MyCollection</a>
+    <a href="/profile">Profile</a>
+    <a href="/messages">Messages</a>
+    <a href="/map">Map</a>
 </nav>
 
 
 
 <%if (photo) {%>
-<section class="profile-picture-box">
-<img class="profile-pic" src="<%= photo %>">
-</section>
+    <section class="profile-picture-box">
+        <img class="profile-pic" src="<%= photo %>">
+    </section>
 <%} else {%>
-<section class="profile-picture-upload">
 
-<h3>Upload profile picture:</h3>
-<form id="photo-upload"enctype="multipart/form-data" method='POST' action='/profile'>
-    <input type='file' name='myFile'>
-    <input type='submit' class='btn btn-primary'>
-</form>
+<section class="profile-picture-upload">
+    <h3>Upload profile picture:</h3>
+    <form id="photo-upload"enctype="multipart/form-data" method='POST' action='/profile'>
+        <input type='file' name='myFile'>
+        <input type='submit' class='btn btn-primary'>
+    </form>
 </section>
 <%}%>
 <main class="profile-body">
     <p class="profile-name"> <%= currentUser.name %> </p> <br>
     <%= currentUser.location %> <br>
     <%= currentUser.email %> <br>
-    User Rating: 3 <br>
     <a href="/auth/logout">Logout</a>
-
 </main>
 
 

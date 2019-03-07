@@ -1,21 +1,30 @@
-<nav>
-<a href="/">Home</a>
-<a href="/collection">MyCollection</a>
-<a href="/profile">Profile</a>
-<a href="/messages">Messages</a>
-<a href="/map">Map</a>
-<a href="/auth/signup">Signup</a>
-<a href="/auth/login">Login</a>
+<span class="logo-img">
+    <img id="logo"src="/img/record-ex.png">
+</span>
+<h2 class="sub-header">A place to share, trade, and talk about the music that you love.</h2>
+<span class="logo-img">
+    <img id="logo2"src="/img/record-ex.png">
+</span>
 
+<nav>
+    <a href="/">Home</a>
+    <a href="/collection">MyCollection</a>
+    <a href="/profile">Profile</a>
+    <a href="/messages">Messages</a>
+    <a href="/map">Map</a>
+    <a href="/auth/signup">Signup</a>
+    <a href="/auth/login">Login</a>
 </nav>
 
-<h1 id="show-head">Record Stores</h1>
+<h1 id="show-head">Record Stores //</h1>
 <p id="message"></p>
 <h3 id="name"></h3>
 
 <div id="map">
 </div>
+
 <script>
-const markerCoords = <%- JSON.stringify(markers) %>
+    const markerCoords = <%- JSON.stringify(markers) %>
 </script>
+
 <script src="/js/app.js"></script>

@@ -9,7 +9,6 @@ router.get('/signup', function(req, res) {
 });
 
 router.post('/signup', function(req, res) {
-  console.log("Hit the signup post route...")
   db.user.findOrCreate({
     where: {email: req.body.email},
     defaults: {
@@ -18,20 +17,16 @@ router.post('/signup', function(req, res) {
       location: req.body.location
     }
   }).spread(function(user, created){
-    console.log("Inside the spread function...");
     if (created) {
-      console.log('User created.');
       passport.authenticate('local', {
         successRedirect: '/',
         successFlash: 'Account created & logged in'
       })(req, res);
     } else {
-      console.log('Email already exists.');
       req.flash('error', 'Email already exists.');
       res.redirect('auth/signup');
     }
   }).catch(function(error){
-    console.log("We got an error:", error);
     res.redirect("/auth/signup");
   });
 });

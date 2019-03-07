@@ -1,5 +1,5 @@
 require('dotenv').config();
-var methodOverride = require('method-override');
+const methodOverride = require('method-override');
 const express = require('express');
 const ejsLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
@@ -11,12 +11,10 @@ const helmet = require('helmet');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const db = require('./models');
 const app = express();
-var request = require('request');
-var multer = require('multer');
-var upload = multer({dest: './uploads/'});
-var cloudinary = require('cloudinary');
-
-//geocoder
+const request = require('request');
+const multer = require('multer');
+const upload = multer({dest: './uploads/'});
+const cloudinary = require('cloudinary');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({
     accessToken: process.env.MAP_BOX_KEY
@@ -56,7 +54,7 @@ app.use(function(req, res, next) {
   res.locals.alerts = req.flash();
   res.locals.currentUser = req.user;
   next();
-})
+});
 
 app.get('/', function(req, res) {
   res.render('main');
@@ -69,10 +67,10 @@ app.get('/search', function(req, res) {
     headers: {
       'User-Agent': "Record Exchange - Student Project"
     }
-    }, function(error, response, body) {
+}, function(error, response, body) {
     let results = JSON.parse(body).results;
     res.render('index', {results})
-  })
+  });
 });
 
 app.post('/search', function(req, res) {
@@ -86,13 +84,9 @@ app.post('/search', function(req, res) {
       imgUrl: req.body.imgUrl
     })
     }).then(function(release){
-      res.redirect('collection');
-  })
+        res.redirect('collection');
+  });
 });
-
-// app.get('/profile', isLoggedIn, function(req, res) {
-//   res.render('profile');
-// })
 
 // ADD PROFILE PHOTO WITH CLOUDINARY
 
@@ -100,13 +94,12 @@ app.get('/profile', isLoggedIn, function(req, res) {
   db.photo.findOne({
     where: {userId: req.user.id}
   }).then(function(photo) {
-    console.log(photo);
     if (photo) {
       res.render('profile', {photo: photo.link});
     } else {
-      res.render('profile', {photo: null});
-    }
-  })
+        res.render('profile', {photo: null});
+    };
+  });
 });
 
 app.post('/profile', upload.single('myFile'), function(req, res) {
@@ -117,8 +110,8 @@ app.post('/profile', upload.single('myFile'), function(req, res) {
       },
       defaults: {link: result.url}
     }).spread(function(photo, created) {
-      res.redirect('profile');
-    })
+        res.redirect('profile');
+    });
   });
 });
 
@@ -127,8 +120,8 @@ app.get('/collection', isLoggedIn, function(req, res) {
     where: {id: req.user.id},
     include: [db.release]
   }).then( function(user) {
-    res.render('collection', {releases: user.releases, user})
-  })
+      res.render('collection', {releases: user.releases, user})
+  });
 });
 
 app.get('/messages', isLoggedIn, function(req, res) {
@@ -137,7 +130,7 @@ app.get('/messages', isLoggedIn, function(req, res) {
 
 app.get('/map', function(req, res) {
   res.render('map/index');
-})
+});
 
 app.get('/find', function(req, res) {
   geocodingClient.forwardGeocode({
@@ -148,23 +141,22 @@ app.get('/find', function(req, res) {
           markers.push(feature.center);
       })
       res.render('map/show', {markers});
-  })
-})
+  });
+});
 
 app.get('/shops', function(req, res) {
   res.render('map/show');
-})
+});
 
 app.delete('/releases/:id', function(req, res) {
   db.usersReleases.destroy({
     where: {releaseId: req.params.id, userId: req.user.id}
   }).then(function() {
-    res.redirect('/collection');
+      res.redirect('/collection');
   });
 });
 
 app.use('/auth', require('./controllers/auth'));
-
 
 var server = app.listen(process.env.PORT || 3000);
 
