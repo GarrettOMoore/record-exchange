@@ -11,6 +11,7 @@
     <a href="/collection">MyCollection</a>
     <a href="/profile">Profile</a>
     <a href="/messages">Messages</a>
+    <a href="/users">Users</a>
     <a href="/map">Map</a>
     <a href="/auth/signup">Signup</a>
     <a href="/auth/login">Login</a>
@@ -24,25 +25,33 @@
     </form>
 </div>
 
+
 <section class="search-results">
+<div class="artist-img-box">
     <img id="artist-img" src=<%= results[0].cover_image %>>
-    <% console.log(results[0].cover_image) %>
-    <p class="artist-name"><%= results[0].title %></p> <br>
+</div>
+<p class="artist-name"><%= results[0].title %></p> <br>
     <% for (let i = 1; i < results.length; i++) {%>
+    <% console.log(results[i].type)  %>
+    <% if (results[i].type == 'master') {%>
     <%let imgLink = results[i].cover_image %>
     <%let jpeg = "jpeg"%>
     <%let jpg = "jpg"%>
     <% if (imgLink.includes(jpeg || jpeg)) {%>
     <div class="results-img-box-main"><img class="result-img" src=<%= imgLink %>></div>
     <div class="main-result-info">
-        <p><%= results[i].title %></p> <br>
+        <p class="title-result"><%= results[i].title %></p> <br>
         <% if (Array.isArray(results[i].label)) {%>
             <p><%= results[i].label[0] %></p> <br>
         <% } else {%>
             <p><%= results[i].label %></p> <br>
         <%}%>
         <p><%= results[i].year %></p> <br>
-        <p><%= results[i].style  %></p> <br>
+        <% if (Array.isArray(results[i].style)) {%>
+            <p><%= results[i].style[0] %></p> <br>
+        <% } else {%>
+            <p><%= results[i].style %></p> <br>
+        <%}%>
     </div>
     <% } %>
     <form method="POST" action="/search">
@@ -54,5 +63,6 @@
         <input hidden type="text" name="imgUrl" value="<%= results[i].cover_image %>">
         <button class="btn-main" type="submit">Add to Your Collection</button>
     </form>
+    <% } %>
     <%}%>
 </section>

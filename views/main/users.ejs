@@ -16,17 +16,17 @@
     <a href="/auth/signup">Signup</a>
     <a href="/auth/login">Login</a>
 </nav>
+<h1> USERS </h1>
 
-<form action="/auth/login" method="POST">
-<div class="form-group">
-    <label for="authEmail">Email</label>
-    <input id="authEmail" class="form-control" type="email" name="email">
-</div>
+<% users.forEach(function(user) {%>
+<section class="profile-picture-box">
+    <img class="profile-pic" src="<%= user.photo %>">
+</section>
+    <section class="one-user">
+        <p> <%= user.name %> </p>
+        <p> <%= user.location %> </p>
+        <p> <%= user.email %> </p>
+        <button id="send-msg"> Send a Message </button>
+    </section>
 
-<div class="form-group">
-    <label for="authPassword">Password</label>
-    <input id="authPassword" class="form-control" type="password" name="password">
-</div>
-
-<input class="btn btn-primary" type="submit">
-</form>
+<%})%>

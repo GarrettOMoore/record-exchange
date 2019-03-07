@@ -3,10 +3,13 @@ body, html {
     padding: 0px;
 }
 
+/* MAIN */
+
 .main-header {
     text-align: center;
     font-family: 'Archivo Black', sans-serif;
     font-size: 40px;
+    margin-bottom: -17px;
     text-decoration: underline;
 }
 
@@ -44,6 +47,87 @@ body, html {
     font-size: 18px;
 }
 
+nav {
+    background-color: black;
+    color: white;
+    margin-top: 1px;
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    font-size: 28px;
+    letter-spacing: 6px;
+    width: 100%;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.main-img {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    font-family: 'Poiret One', cursive;
+}
+
+#ongaku {
+    border: 18px solid #000000;
+    border-radius: 0px 131px 0px 131px;
+    box-shadow: inset 700px 200px 234px 0px rgba(0,0,0,0.16);
+}
+.search-box {
+    margin-top: 30px;
+}
+
+.main-search {
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    margin-bottom: 30px;
+}
+
+.results-img-box {
+    margin-top: 80px;
+}
+
+.result-img {
+    width: 300px;
+    height: 300px;
+    margin-top: 80px;
+    border: 6px solid black;
+    box-shadow: -11px 10px 38px 0px rgba(0,0,0,0.75);
+}
+
+.search-results {
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+}
+
+
+.main-result-info {
+    font-size: 18px;
+    margin-top: 50px;
+}
+
+.title-result {
+    font-size: 24px;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+.btn-main {
+    margin-bottom: 30px;
+}
+
+.form-group {
+    font-size: 18px;
+    font-family: 'Poiret One', cursive;
+    margin-top: 40px;
+}
+
+/* PROFILE */
+
 .profile-picture-upload {
     margin-top: 40px;
     margin-left: 450px;
@@ -80,74 +164,7 @@ body, html {
     font-size: 20px;
     font-family: 'Poiret One', cursive;
 }
-nav {
-    background-color: black;
-    color: white;
-    margin-top: 1px;
-    text-align: center;
-    font-family: 'Poiret One', cursive;
-    font-size: 28px;
-    letter-spacing: 6px;
-    width: 100%;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-}
-
-.main-img {
-    text-align: center;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    font-family: 'Poiret One', cursive;
-}
-
-#ongaku {
-    /* border: 50px solid rgba(5, 10, 5, 0.9 ); */
-    border: 18px solid #000000;
-    border-radius: 0px 131px 0px 131px;
-    box-shadow: inset 700px 200px 234px 0px rgba(0,0,0,0.16);
-    /* border-radius: 15% 15% 15% 15%;; */
-}
-.search-box {
-    margin-top: 30px;
-}
-
-.main-search {
-    font-size: 30px;
-    text-align: center;
-    font-family: 'Poiret One', cursive;
-    margin-bottom: 30px;
-}
-
-.result-img {
-    width: 300px;
-    height: 300px;
-    margin-top: 80px;
-    border: 6px solid black;
-    box-shadow: -11px 10px 38px 0px rgba(0,0,0,0.75);
-}
-
-.search-results {
-    margin-top: 10px;
-    text-align: center;
-    font-family: 'Poiret One', cursive;
-}
-
-
-.main-result-info {
-    margin-top: 50px;
-}
-
-.btn-main {
-    margin-bottom: 30px;
-}
-
-.artist-img {
-    height: 600px;
-    width: 600px;
-}
+ /* COLLECTION */
 
 .artist-name {
     margin-top: 50px;
@@ -167,30 +184,6 @@ nav a {
 
 #show-head {
     font-family: 'Poiret One', cursive;
-    text-align: center;
-}
-
-#map {
-    margin: 0 auto;
-    border: 10px solid black;
-    border-radius: 10%;
-    width: 600px;
-    height: 600px;
-    overflow: hidden;
-}
-
-#map-form {
-    padding: 30px;
-    font-family: 'Poiret One', cursive;
-    margin: 0 auto;
-    margin-left: 330px;
-    margin-top: 100px;
-}
-.marker {
-    background-size: contain;
-}
-
-#message {
     text-align: center;
 }
 
@@ -216,10 +209,6 @@ nav a {
 #move-trade-btn:hover {
     transform: translateY(1.5px);
     box-shadow: 1px 0px 1px 0px rgba(0,0,0,0.75);
-}
-
-.results-img-box {
-    margin-top: 80px;
 }
 
 .collection-main {
@@ -305,9 +294,41 @@ nav a {
     cursor: pointer;
 }
 
+/* MAP */
+
+#map {
+    margin: 0 auto;
+    border: 10px solid black;
+    border-radius: 10%;
+    width: 600px;
+    height: 600px;
+    overflow: hidden;
+}
+
+#map-form {
+    text-align: center;
+    padding: 30px;
+    font-family: 'Poiret One', cursive;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.marker {
+    background-size: contain;
+}
+
+#message {
+    text-align: center;
+}
+
 footer {
     text-align: center;
     font-size: 20px;
     font-family: 'Poiret One', cursive;
     font-weight: bolder;
+}
+
+/* USERS */
+
+.one-user {
+    padding: 20px;
 }

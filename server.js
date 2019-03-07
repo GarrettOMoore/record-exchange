@@ -18,7 +18,7 @@ const cloudinary = require('cloudinary');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({
     accessToken: process.env.MAP_BOX_KEY
-});
+  });
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -41,10 +41,9 @@ app.use(session({
   store: sessionStore
 }));
 
-//USE THIS LINE ONCE TO SET UP STORE TABLE
+// USE THIS LINE ONCE TO SET UP STORE TABLE
 // sessionStore.sync();
 
-//THIS MUST COME AFTER THE SESSION AND BEFORE PASSPORT
 app.use(flash());
 
 app.use(passport.initialize());
@@ -56,10 +55,12 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Root Page
 app.get('/', function(req, res) {
-  res.render('main');
+  res.render('main/main');
 });
 
+// Display search results
 app.get('/search', function(req, res) {
   var search = req.query.search;
   var url = 'https://api.discogs.com/database/search?q='+ encodeURI(search) + '&key=' + process.env.CONSUMER_KEY + '&secret=' + process.env.CONSUMER_SECRET
@@ -69,10 +70,11 @@ app.get('/search', function(req, res) {
     }
 }, function(error, response, body) {
     let results = JSON.parse(body).results;
-    res.render('index', {results})
+    res.render('main/index', {results})
   });
 });
 
+// Add selected albums to collection
 app.post('/search', function(req, res) {
   db.user.findById(parseInt(req.user.dataValues.id)).then(function(user) {
     return user.createRelease({
@@ -81,27 +83,28 @@ app.post('/search', function(req, res) {
       year: req.body.year,
       genre: req.body.style,
       label: req.body.label,
-      imgUrl: req.body.imgUrl
+      imgUrl: req.body.imgUrl,
+      type: null
     })
     }).then(function(release){
-        res.redirect('collection');
+        res.redirect('user/collection');
   });
 });
 
-// ADD PROFILE PHOTO WITH CLOUDINARY
-
+// Add profile photo with Cloudinary
 app.get('/profile', isLoggedIn, function(req, res) {
   db.photo.findOne({
     where: {userId: req.user.id}
   }).then(function(photo) {
     if (photo) {
-      res.render('profile', {photo: photo.link});
+      res.render('user/profile', {photo: photo.link});
     } else {
-        res.render('profile', {photo: null});
+        res.render('user/profile', {photo: null});
     };
   });
 });
 
+// Post user profile photo to DB
 app.post('/profile', upload.single('myFile'), function(req, res) {
   cloudinary.uploader.upload(req.file.path, function(result) {
     db.photo.findOrCreate({
@@ -110,28 +113,41 @@ app.post('/profile', upload.single('myFile'), function(req, res) {
       },
       defaults: {link: result.url}
     }).spread(function(photo, created) {
-        res.redirect('profile');
+        res.redirect('user/profile');
     });
   });
 });
 
+// Show user collection
 app.get('/collection', isLoggedIn, function(req, res) {
   db.user.findOne({
     where: {id: req.user.id},
     include: [db.release]
-  }).then( function(user) {
-      res.render('collection', {releases: user.releases, user})
+    }).then( function(user) {
+      res.render('user/collection', {releases: user.releases, user})
   });
 });
 
+// Messages page
 app.get('/messages', isLoggedIn, function(req, res) {
-  res.render('messages');
+  res.render('user/messages');
 });
 
+// Display all users
+app.get('/users', isLoggedIn, function(req, res) {
+  db.user.findAll({
+    // include: [db.photo]
+  }).then(function (users) {
+    res.render('main/users', {users})
+  })
+})
+
+// Render map index page
 app.get('/map', function(req, res) {
   res.render('map/index');
 });
 
+// Query mapbox with City and State
 app.get('/find', function(req, res) {
   geocodingClient.forwardGeocode({
     query: "record shop " + req.query.city + ", " + req.query.state
@@ -144,15 +160,17 @@ app.get('/find', function(req, res) {
   });
 });
 
+// Display map results
 app.get('/shops', function(req, res) {
   res.render('map/show');
 });
 
+// Delete album from user collection
 app.delete('/releases/:id', function(req, res) {
   db.usersReleases.destroy({
     where: {releaseId: req.params.id, userId: req.user.id}
   }).then(function() {
-      res.redirect('/collection');
+      res.redirect('user/collection');
   });
 });
 
