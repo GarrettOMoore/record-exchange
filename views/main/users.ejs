@@ -16,7 +16,7 @@
     <a href="/auth/signup">Signup</a>
     <a href="/auth/login">Login</a>
 </nav>
-<h1> USERS </h1>
+<h1> Community </h1>
 
 <% users.forEach(function(user) {%>
 <section class="profile-picture-box">
@@ -26,7 +26,7 @@
         <p> <%= user.name %> </p>
         <p> <%= user.location %> </p>
         <p> <%= user.email %> </p>
-        <button id="send-msg"> Send a Message </button>
+        <a href="/messages"><button id="send-msg"> Send a Message </button></a>
     </section>
 
 <%})%>

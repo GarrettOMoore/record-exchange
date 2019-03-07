@@ -118,6 +118,17 @@ app.post('/profile', upload.single('myFile'), function(req, res) {
   });
 });
 
+// Update profile picture
+app.put('/profile', upload.single('myFile'), function(req, res) {
+  cloudinary.uploader.upload(req.file.path, function(result) {
+    db.photo.update({
+      link: result.url
+      }, {where: {userId: req.user.id}}
+      ).then(function(photo, created) {
+        res.redirect('/profile');
+    })
+  })});
+
 // Show user collection
 app.get('/collection', isLoggedIn, function(req, res) {
   db.user.findOne({
@@ -136,7 +147,7 @@ app.get('/messages', isLoggedIn, function(req, res) {
 // Display all users
 app.get('/users', isLoggedIn, function(req, res) {
   db.user.findAll({
-    // include: [db.photo]
+    include: [db.photo]
   }).then(function (users) {
     res.render('main/users', {users})
   })

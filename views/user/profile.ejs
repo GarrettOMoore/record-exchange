@@ -35,6 +35,11 @@
     <p class="profile-name"> <%= currentUser.name %> </p> <br>
     <%= currentUser.location %> <br>
     <%= currentUser.email %> <br>
+    <p> Update Profile Photo:</p>
+    <form id="photo-update"enctype="multipart/form-data" method='POST' action="/profile/?_method=PUT">
+        <input id ="update-input" type='file' name='myFile'>
+        <input id ="update-btn" type='submit' class='btn btn-primary'>
+    </form>
     <a href="/auth/logout">Logout</a>
 </main>
 
