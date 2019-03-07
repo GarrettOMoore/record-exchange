@@ -22,11 +22,13 @@
 <img id="artist-img" src=<%= results[0].cover_image %>>
 <p class="artist-name"><%= results[0].title %></p> <br>
 <% for (let i = 1; i < results.length; i++) {%>
-<div class="results-img-box-main"><img id="result-img" src=<%= results[i].cover_image %>></div>
+<div class="results-img-box-main"><img class="result-img" src=<%= results[i].cover_image %>></div>
+<div class="main-result-info">
 <p><%= results[i].title %></p> <br>
 <p><%= results[i].label %></p> <br>
 <p><%= results[i].year %></p> <br>
 <p><%= results[i].style  %></p> <br>
+</div>
 <form method="POST" action="/search">
 <input hidden type="text" name="artist" value="<%= results[i].title %>">
 <input hidden type="text" name="genre" value="<%= results[i].style %>">

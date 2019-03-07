@@ -9,6 +9,22 @@
 
 </nav>
 
+
+
+<%if (photo) {%>
+<section class="profile-picture-box">
+<img class="profile-pic" src="<%= photo %>">
+</section>
+<%} else {%>
+<section class="profile-picture-upload">
+
+<h3>Upload profile picture:</h3>
+<form id="photo-upload"enctype="multipart/form-data" method='POST' action='/profile'>
+    <input type='file' name='myFile'>
+    <input type='submit' class='btn btn-primary'>
+</form>
+</section>
+<%}%>
 <main class="profile-body">
     <p class="profile-name"> <%= currentUser.name %> </p> <br>
     <%= currentUser.location %> <br>

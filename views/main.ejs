@@ -11,6 +11,11 @@
 
 </nav>
 
+<%if (currentUser) {%>
+<span class="log-status">You are logged in as:  <%= currentUser.name %> </span>
+<%} else {%>
+<span class="log-status">  You are not logged in </span>
+<%}%>
 <div class="search-box">
 <h1 class="main-search">Search Releases: </h1>
 <form class="main-search" method="GET" action='/search'>
@@ -21,5 +26,9 @@
 
 
 <section class="main-img">
-    <img id="ongaku" src="/img/ongaku.jpg">
+    <img id="ongaku" src="img/record.png">
 </section>
+
+<footer>
+<p>Created by Garrett Moore using the Discogs API &copy; 2019</p>
+</footer>

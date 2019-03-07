@@ -12,6 +12,9 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const db = require('./models');
 const app = express();
 var request = require('request');
+var multer = require('multer');
+var upload = multer({dest: './uploads/'});
+var cloudinary = require('cloudinary');
 
 //geocoder
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
@@ -73,7 +76,6 @@ app.get('/search', function(req, res) {
 });
 
 app.post('/search', function(req, res) {
-  console.log(req.user);
   db.user.findById(parseInt(req.user.dataValues.id)).then(function(user) {
     return user.createRelease({
       title: req.body.title,
@@ -88,8 +90,36 @@ app.post('/search', function(req, res) {
   })
 });
 
+// app.get('/profile', isLoggedIn, function(req, res) {
+//   res.render('profile');
+// })
+
+// ADD PROFILE PHOTO WITH CLOUDINARY
+
 app.get('/profile', isLoggedIn, function(req, res) {
-  res.render('profile');
+  db.photo.findOne({
+    where: {userId: req.user.id}
+  }).then(function(photo) {
+    console.log(photo);
+    if (photo) {
+      res.render('profile', {photo: photo.link});
+    } else {
+      res.render('profile', {photo: null});
+    }
+  })
+});
+
+app.post('/profile', upload.single('myFile'), function(req, res) {
+  cloudinary.uploader.upload(req.file.path, function(result) {
+    db.photo.findOrCreate({
+      where: {
+        userId: parseInt(req.user.dataValues.id)
+      },
+      defaults: {link: result.url}
+    }).spread(function(photo, created) {
+      res.redirect('profile');
+    })
+  });
 });
 
 app.get('/collection', isLoggedIn, function(req, res) {
