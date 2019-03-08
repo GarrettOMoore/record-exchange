@@ -84,12 +84,27 @@ app.post('/search', function(req, res) {
       genre: req.body.style,
       label: req.body.label,
       imgUrl: req.body.imgUrl,
-      type: null
+      type: null,
     })
-    }).then(function(release){
-        res.redirect('/collection');
+    }).then(function(){
+      res.redirect('/collection');
+    }) 
+  });
+
+
+app.get('/trade', function(req, res) {
+  db.usersReleases.findAll({
+    where: {userId: req.user.id}
+  }).then(function(usersReleases) {
+    db.release.findAll({
+      where: {id: usersReleases.releaseId}
+    }).then(function(releases){
+      res.render('user/trade', {usersReleases, releases});
+    })
   });
 });
+
+
 
 // Add profile photo with Cloudinary
 app.get('/profile', isLoggedIn, function(req, res) {
@@ -141,6 +156,21 @@ app.get('/collection', isLoggedIn, function(req, res) {
   });
 });
 
+app.put('/trade/:id', function(req, res) {
+  console.log('HITTING TRADE ROUTE', req.body)
+  db.usersReleases.update({
+    isTradeable: true,
+    comment: req.body.comment,
+  }, {
+    where: {
+      userId: req.user.id,
+      releaseId: req.params.id
+    }
+  }).then(function(usersReleases) {
+    res.redirect('/collection')
+  })
+})
+
 // Messages page
 app.get('/messages', isLoggedIn, function(req, res) {
   db.user.findAll().then(function(users) {
@@ -187,7 +217,7 @@ app.delete('/releases/:id', function(req, res) {
   db.usersReleases.destroy({
     where: {releaseId: req.params.id, userId: req.user.id}
   }).then(function() {
-      res.redirect('user/collection');
+      res.redirect('/collection');
   });
 });
 

@@ -8,12 +8,12 @@
 <nav>
     <a href="/">Home</a>
     <a href="/collection">MyCollection</a>
+    <a href="/trade">MyTrade</a>
     <a href="/profile">Profile</a>
     <a href="/messages">Messages</a>
     <a href="/users">Users</a>
     <a href="/map">Map</a>
 </nav>
-<% console.log(releases)%>
 <h1 class="page-name"> <%= user.name%>'s Collection: </h1>
 <section class="collection-main">
     <% releases.forEach(function(release, i) { %>
@@ -45,9 +45,22 @@
     <form id="delete-btn" method="POST" action="/releases/<%= release.id %>?_method=DELETE">
         <input class="btn" type="submit" value="Remove From Collection">
     </form>
-    <form id="move-trade-btn" method="POST" action="#">
-        <input class="btn" type="submit" value="Add to Trade">
-    </form>
+    <input class="move-trade-btn" type="button" value="Add to Trade">
+
+<!-- The Modal -->
+<div id="comModal" class="modal">
+
+<!-- Modal content -->
+<div class="com-modal-content">
+    <span class="com-close">&times;</span>
+    <form id="add-com-form"method="POST" action="/trade/<%= release.id %>?_method=PUT">
+    <p>Add a comment about this release:</p>
+    <textarea id="com-body" name="comment" rows="4" cols="50"placeholder="Write your comment here..."></textarea> <br>
+    <input id="add-com"class="btn" type="submit" value="Submit!">
+</form>
+</div>
+
+</div>
 </div>
     <% }) %>
 </section>
