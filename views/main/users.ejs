@@ -16,17 +16,33 @@
     <a href="/auth/signup">Signup</a>
     <a href="/auth/login">Login</a>
 </nav>
-<h1> Community </h1>
+<h1 class="page-name"> Community </h1>
 
-<% users.forEach(function(user) {%>
-<section class="profile-picture-box">
-    <img class="profile-pic" src="<%= user.photo %>">
+<main class="user-main">
+<% photos.forEach(function(photo, i) {%>
+<section class="user-pic-box">
+    <img class="user-pic" src="<%= photo.link %>">
 </section>
-    <section class="one-user">
-        <p> <%= user.name %> </p>
-        <p> <%= user.location %> </p>
-        <p> <%= user.email %> </p>
-        <a href="/messages"><button id="send-msg"> Send a Message </button></a>
-    </section>
+<div id="userModal<%= i %>" class="new-modal">
+<div class="modal-content-user">
+<div class="modal-header-user">
+    <span class="user-close">&times;</span>
+    <h2><%= photo.user.name %></h2>
+</div>
+<div class="modal-body-user">
+    <p data-target="userModal<%=i%>"><%= photo.user.location %> <br>
+    <p> <%= photo.user.email %> </p>
+</div>
+<div class="modal-footer-user">
+    <a href="/messages"><button id="send-msg"> Send a Message </button></a>
+</div>
+</div>
+</div>
+    <%})%>
+</main>
 
-<%})%>
+<footer>
+    <p>Created by Garrett Moore using the Discogs API &copy; 2019</p>
+</footer>
+
+<script src="/js/users.js"></script>

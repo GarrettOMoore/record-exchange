@@ -1,10 +1,10 @@
-console.log("Hello world");
+console.log("Hello user");
 
 let modals;
 let imgs;
 
 // Get the modal
-var modal = document.getElementById('myModal');
+var modal = document.getElementById('userModal');
 
 // Get the button that opens the modal
 var btn;
@@ -15,21 +15,21 @@ var spans;
 // click event to open modal 
 
 document.addEventListener('DOMContentLoaded', function() {
-    imgs = document.querySelectorAll(".results-img-box");
-    modals = document.querySelectorAll(".modal");
-    spans = document.querySelectorAll('.close');
+    imgs = document.querySelectorAll(".user-pic-box");
+    modals = document.querySelectorAll(".new-modal");
+    spans = document.querySelectorAll('.user-close');
 
     imgs.forEach( (img,i) => {
         img.addEventListener('click', function(e){
             console.log(e.target)
-            let mod = document.getElementById(`myModal${i}`)
+            let mod = document.getElementById(`userModal${i}`)
             mod.style.display = 'block';
         })
     })
     
     spans.forEach( (span, i) => {
         span.addEventListener('click', function(e) {
-            let mod = document.getElementById(`myModal${i}`)
+            let mod = document.getElementById(`userModal${i}`)
             mod.style.display = 'none';
         })
     })

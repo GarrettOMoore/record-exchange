@@ -35,13 +35,25 @@
     <p class="profile-name"> <%= currentUser.name %> </p> <br>
     <%= currentUser.location %> <br>
     <%= currentUser.email %> <br>
-    <p> Update Profile Photo:</p>
+    <button id="myBtn">Update Profile Photo</button>
+        <div id="updateModal" class="update-profile-modal">
+            <div class="update-modal-content">
+    <span class="update-close">&times;</span>
     <form id="photo-update"enctype="multipart/form-data" method='POST' action="/profile/?_method=PUT">
         <input id ="update-input" type='file' name='myFile'>
         <input id ="update-btn" type='submit' class='btn btn-primary'>
     </form>
+</div>
+</div> <br>
     <a href="/auth/logout">Logout</a>
 </main>
 
+<section class="trade-view">
+    <h1 class="trade-head">Trade Stack:</h1>
+</section>
 
+<footer>
+    <p>Created by Garrett Moore using the Discogs API &copy; 2019</p>
+</footer>
+<script src="/js/update-photo.js"></script>
 

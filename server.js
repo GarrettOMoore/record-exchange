@@ -87,7 +87,7 @@ app.post('/search', function(req, res) {
       type: null
     })
     }).then(function(release){
-        res.redirect('user/collection');
+        res.redirect('/collection');
   });
 });
 
@@ -113,21 +113,23 @@ app.post('/profile', upload.single('myFile'), function(req, res) {
       },
       defaults: {link: result.url}
     }).spread(function(photo, created) {
-        res.redirect('user/profile');
+        res.redirect('/profile');
     });
   });
 });
 
 // Update profile picture
+
 app.put('/profile', upload.single('myFile'), function(req, res) {
   cloudinary.uploader.upload(req.file.path, function(result) {
     db.photo.update({
       link: result.url
       }, {where: {userId: req.user.id}}
-      ).then(function(photo, created) {
+    ).then(function(photo, created) {
         res.redirect('/profile');
-    })
-  })});
+    });
+  });
+});
 
 // Show user collection
 app.get('/collection', isLoggedIn, function(req, res) {
@@ -141,15 +143,19 @@ app.get('/collection', isLoggedIn, function(req, res) {
 
 // Messages page
 app.get('/messages', isLoggedIn, function(req, res) {
-  res.render('user/messages');
+  db.user.findAll().then(function(users) {
+    res.render('user/messages', {users});
+  })
 });
 
 // Display all users
 app.get('/users', isLoggedIn, function(req, res) {
-  db.user.findAll({
-    include: [db.photo]
-  }).then(function (users) {
-    res.render('main/users', {users})
+  db.photo.findAll({
+    include: [db.user]
+  }).then(function (photos) {
+    // console.log('photos is .......', photos);
+    // console.log('users array is .......', photos[0].dataValues.user);
+    res.render('main/users', {photos})
   })
 })
 
@@ -186,6 +192,7 @@ app.delete('/releases/:id', function(req, res) {
 });
 
 app.use('/auth', require('./controllers/auth'));
+// app.use('/profile', require('./controllers/profile'));
 
 var server = app.listen(process.env.PORT || 3000);
 
