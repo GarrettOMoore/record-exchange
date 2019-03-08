@@ -42,7 +42,7 @@ app.use(session({
 }));
 
 // USE THIS LINE ONCE TO SET UP STORE TABLE
-// sessionStore.sync();
+sessionStore.sync();
 
 app.use(flash());
 
