@@ -91,6 +91,7 @@ app.post('/search', function(req, res) {
     }) 
   });
 
+// get trade page 
 
 app.get('/trade', function(req, res) {
   db.usersReleases.findAll({
@@ -157,7 +158,6 @@ app.get('/collection', isLoggedIn, function(req, res) {
 });
 
 app.put('/trade/:id', function(req, res) {
-  console.log('HITTING TRADE ROUTE', req.body)
   db.usersReleases.update({
     isTradeable: true,
     comment: req.body.comment,
@@ -183,8 +183,6 @@ app.get('/users', isLoggedIn, function(req, res) {
   db.photo.findAll({
     include: [db.user]
   }).then(function (photos) {
-    // console.log('photos is .......', photos);
-    // console.log('users array is .......', photos[0].dataValues.user);
     res.render('main/users', {photos})
   })
 })

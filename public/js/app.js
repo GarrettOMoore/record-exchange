@@ -84,7 +84,6 @@ map.on('load', function(){
 });
 
 geojson.features.forEach(function (marker) {
-    console.log("in new function");
 	// create a DOM element for the marker
 	var el = document.createElement('div');
 	el.className = 'marker';
