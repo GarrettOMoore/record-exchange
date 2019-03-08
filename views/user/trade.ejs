@@ -15,13 +15,14 @@
     <a href="/map">Map</a>
 </nav>
 
-<h1>TRADE SELECTIONS</h1>
+<h1 class="trade-head">TRADE SELECTIONS:</h1>
 <%console.log("RELEAAASSSEEESSSSSSS" + releases)%>
+
 <%releases.forEach(function(release) {%>
     <p> <%= release.title%> </p>
 <%})%>
 
 
 <%usersReleases.forEach(function(instance) {%>
-    <p> <%= instance.comment%> </p>
+    <p class="comment-text"> <%= instance.comment%> </p>
 <%})%>

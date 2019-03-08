@@ -209,12 +209,6 @@ nav a {
     cursor: pointer;
 }
 
-.trade-head {
-    font-family: 'Playfair Display SC', serif;
-    text-align: center;
-    font-weight: bolder;
-}
-
  /* COLLECTION */
 
 .artist-name {
@@ -564,4 +558,22 @@ footer {
     margin-top: 10px;
     margin-bottom: 20px;
     border: 2px solid black;
+}
+
+/* TRADE PAGE */
+
+.trade-head {
+    font-size: 44px;
+    font-family: 'Playfair Display SC', serif;
+    text-align: center;
+    font-weight: bolder;
+    margin-bottom: 80px;
+}
+
+.comment-text {
+    margin-top: 30px;
+    text-align: right;
+    font-size: 24px;
+    font-weight: bolder;
+    font-family: 'Poiret One', cursive;
 }
