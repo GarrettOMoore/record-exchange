@@ -1,35 +1,35 @@
-console.log("Hello comment");
+console.log("hello comment");
 
-let modals;
-let imgs;
+let comModals;
+let btns;
 
 // Get the modal
-var modal = document.getElementById('myModal');
+var comModal = document.getElementById('comModal');
 
 // Get the button that opens the modal
-var btn;
+var tradeBtn;
 
 // Get the <span> element that closes the modal
-var spans;
+var tradeSpans;
 
 // click event to open modal 
 
 document.addEventListener('DOMContentLoaded', function() {
-    imgs = document.querySelectorAll(".results-img-box");
-    modals = document.querySelectorAll(".modal");
-    spans = document.querySelectorAll('.close');
+    tradeBtns = document.querySelectorAll(".move-trade-btn");
+    comModals = document.querySelectorAll(".com-modal-content");
+    tradeSpans = document.querySelectorAll('.com-close');
 
-    imgs.forEach( (img,i) => {
-        img.addEventListener('click', function(e){
-            console.log(e.target)
-            let mod = document.getElementById(`myModal${i}`)
+    tradeBtns.forEach( (btn,i) => {
+        btn.addEventListener('click', function(e){
+            console.log("clickcccc")
+            let mod = document.getElementById(`comModal${i}`)
             mod.style.display = 'block';
         })
     })
     
-    spans.forEach( (span, i) => {
+    tradeSpans.forEach( (span, i) => {
         span.addEventListener('click', function(e) {
-            let mod = document.getElementById(`myModal${i}`)
+            let mod = document.getElementById(`comModal${i}`)
             mod.style.display = 'none';
         })
     })

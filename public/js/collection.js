@@ -35,31 +35,3 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 })
 
-
-// Modal script for commenting on trade selection //
-
-console.log("Hello comment");
-
-let comModals;
-let comImgs;
-
-// Get the modal
-var comModal = document.getElementById('comModal');
-
-// Get the button that opens the modal
-var comBtn = document.getElementsByClassName('move-trade-btn')[0];
-
-// Get the <span> element that closes the modal
-var spans = document.getElementsByClassName('com-close')[0];
-
-// click event to open modal 
-
-comBtn.addEventListener('click', function() {
-    console.log('commmeeennntttt clicccckkkk');
-    comModal.style.display = "block";
-})
-
-spans.onclick = function() {
-    console.log('clossseee');
-    comModal.style.display = "none";
-}

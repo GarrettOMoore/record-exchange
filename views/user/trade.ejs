@@ -16,13 +16,17 @@
 </nav>
 
 <h1 class="trade-head">TRADE SELECTIONS:</h1>
-<%console.log("RELEAAASSSEEESSSSSSS" + releases)%>
 
-<%releases.forEach(function(release) {%>
-    <p> <%= release.title%> </p>
-<%})%>
+    <img class="result-img" src = <%=release.imgUrl%>>
+    <h4><%=release.title%></h4>
+    <%= release.year %> <br>
+    <%let label = release.label%>
+    <% let splitLab = label.split(',')%>
+    <%= splitLab[0] %>
+
+<% for(let i=0;i<tradeables.length;i++) {%>
+    <h4>User Note:</h4>
+    <p><%= tradeables[i].comment %></p>
+<%}%>
 
 
-<%usersReleases.forEach(function(instance) {%>
-    <p class="comment-text"> <%= instance.comment%> </p>
-<%})%>

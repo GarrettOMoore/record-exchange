@@ -48,18 +48,16 @@
     <input class="move-trade-btn" type="button" value="Add to Trade">
 
 <!-- The Modal -->
-<div id="comModal" class="modal">
-
-<!-- Modal content -->
-<div class="com-modal-content">
-    <span class="com-close">&times;</span>
-    <form id="add-com-form"method="POST" action="/trade/<%= release.id %>?_method=PUT">
-    <p>Add a comment about this release:</p>
-    <textarea id="com-body" name="comment" rows="4" cols="50"placeholder="Write your comment here..."></textarea> <br>
-    <input id="add-com"class="btn" type="submit" value="Submit!">
-</form>
-</div>
-
+<div id="comModal<%= i %>" class="comment-modal">
+    <!-- Modal content -->
+    <div class="com-modal-content">
+        <span class="com-close">&times;</span>
+            <form id="add-com-form"method="POST" action="/trade/<%= release.id %>?_method=PUT">
+                <p>Add a comment about this release:</p>
+                <textarea id="com-body" name="comment" rows="4" cols="50"placeholder="Write your comment here..."></textarea> <br>
+                <input id="add-com"class="btn" type="submit" value="Submit!">
+            </form>
+    </div>
 </div>
 </div>
     <% }) %>
@@ -69,4 +67,5 @@
     <p>Created by Garrett Moore using the Discogs API &copy; 2019</p>
 </footer>
 
+<script src="/js/comment.js"></script>
 <script src="/js/collection.js"></script>

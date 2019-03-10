@@ -11,6 +11,7 @@ const helmet = require('helmet');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const db = require('./models');
 const app = express();
+const async = require('async');
 const request = require('request');
 const multer = require('multer');
 const upload = multer({dest: './uploads/'});
@@ -91,19 +92,28 @@ app.post('/search', function(req, res) {
     }) 
   });
 
-// get trade page 
+// get trade page with comments and release info
 
 app.get('/trade', function(req, res) {
   db.usersReleases.findAll({
     where: {userId: req.user.id}
   }).then(function(usersReleases) {
-    db.release.findAll({
-      where: {id: usersReleases.releaseId}
-    }).then(function(releases){
-      res.render('user/trade', {usersReleases, releases});
+    let tradeables = usersReleases.filter(function(release){
+      return release.isTradeable
+    });
+    return tradeables;
+  }).then(function(tradeables) {
+    // Do this for each tradeable release..
+      db.release.findOne({
+          where: {id: tradeables[1].releaseId}
+        }).then(function(release){
+          console.log(release);
+        res.render('user/trade', {release: release, tradeables})
+    // res.json({tradeables})
     })
-  });
+  })
 });
+
 
 
 

@@ -11,6 +11,7 @@ body, html {
     font-size: 80px;
     text-decoration: underline;
     font-weight: bolder;
+    margin-bottom: 20px;
 }
 
 .sub-header {
@@ -51,7 +52,7 @@ nav {
     margin-top: -14px;
     text-align: center;
     font-family: 'Poiret One', cursive;
-    font-size: 28px;
+    font-size: 24px;
     letter-spacing: 6px;
     width: 100%;
 }
@@ -176,6 +177,7 @@ nav a {
 .update-profile-modal {
     display: none;
     position: fixed; 
+    opacity: 0.9;
     z-index: 1; 
     left: 0;
     top: 0;
@@ -271,12 +273,15 @@ nav a {
     height: 312px;
 }
 
+/* RELEASE INFO MODAL */
+
 .modal {
     display: none;
     /* visibility: hidden; */
     position: fixed;
     z-index: 1;
     left: 0;
+    opacity: 0.9;
     top: 0;
     width: 100%;
     height: 100%;
@@ -341,26 +346,28 @@ nav a {
 }
 /* COMMENT TO TRADE MODAL */
 
-#comModal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
+/* The Modal (background) */
+.comment-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
     left: 0;
+    opacity: 0.9;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4); 
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content/Box */
+  /* Modal Content/Box */
 .com-modal-content {
     background-color: #fefefe;
-    margin: 15% auto; 
+    margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; 
+    border: 4px solid black;
+    width: 40%; /* Could be more or less, depending on screen size */
 }
 
   /* The Close Button */
@@ -377,7 +384,6 @@ nav a {
     text-decoration: none;
     cursor: pointer;
 }
-
 
 #add-com {
     margin-top: 35px;
