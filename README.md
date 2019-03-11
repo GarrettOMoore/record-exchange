@@ -98,6 +98,9 @@ Using .split() on the returned object - I just selected the artist name and redi
 
 Once the user has designated any items for their collection - they're able to select any of them to be available for trade. Having a boolean column in the join table - the add to trade button just toggles it to **True** and prompts the user to add a comment about the album. I had a tough time getting both the album information and associated comments to render together on the myTrade page. After a lot of experimenting - I was recommended to use async to fire off all of the DB queries in a row. That solved the issue of only being to get one album out of the db at a time.
 
+### Trade Page:
+![alt text](https://i.imgur.com/CIpav3I.png "trade-page")
+
 ***
 
 3/10/2019 //
