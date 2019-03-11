@@ -17,7 +17,7 @@
 
 <h1 class="trade-head">TRADE SELECTIONS:</h1>
 
-
+<main class="trade-main">
 <%releases.forEach(function(release) {%>
 <section class="trade-album-img">
 <img class="result-img" src = <%=release.release.imgUrl%>>
@@ -31,7 +31,7 @@
 <p><%= release.userRelease.comment %> </p>
 </section>
 <%})%>
-
+</main>
 
 
 

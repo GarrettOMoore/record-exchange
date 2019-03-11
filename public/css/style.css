@@ -569,6 +569,12 @@ footer {
 
 /* TRADE PAGE */
 
+.trade-main {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    flex-flow: row wrap;
+}
 .trade-head {
     font-size: 44px;
     font-family: 'Playfair Display SC', serif;
