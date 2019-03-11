@@ -22,7 +22,7 @@
     <p>Send to:</p>
     <select name='user'>
     <% users.forEach(function(user) { %>
-        <option value="<%= user.name %>"><%=user.name%></option>
+        <option value="<%= user.id %>"><%=user.name%></option>
     <%})%>
     </select> <br>
     <textarea id="msg-body" name="message" rows="4" cols="50"placeholder="Write your message here..."></textarea> <br>

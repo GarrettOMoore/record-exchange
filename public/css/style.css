@@ -1,6 +1,7 @@
 body, html {
     margin: 0px;
     padding: 0px;
+    border: 6px solid black;
 }
 
 /* MAIN */
@@ -583,6 +584,11 @@ footer {
     text-align: center;
     font-weight: bolder;
     margin-bottom: 80px;
+}
+
+.user-note {
+    font-size: 18px;
+    font-weight: bolder;
 }
 
 .comment-text {

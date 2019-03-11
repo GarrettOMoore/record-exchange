@@ -119,16 +119,25 @@ app.get('/trade', function (req, res) {
   });
 });
 
+// Messages page
+app.get('/messages', isLoggedIn, function(req, res) {
+  db.user.findAll({
+  }).then(function(users) {
+    users.getMessages().then(function(data){
+      res.json(data);
+    })
+    // res.render('user/messages', {users});
+  })
+});
+
 //send message
 app.post('/messages', function(req, res) {
-  db.message.findOrCreate({
-    where: {
+  db.message.create({
       sendUserId: req.user.id,
-      recievedUserId: req.body.user.id
-    },
-    defaults: {message: req.body.message}
-  }).spread(function(message, created) {
-    res.redirect('/messages', {message});
+      recievedUserId: req.body.user,
+      message: req.body.message
+  }).then(function(message) {
+    res.redirect('/messages');
   })
 })
 
@@ -195,12 +204,6 @@ app.put('/trade/:id', function(req, res) {
   })
 })
 
-// Messages page
-app.get('/messages', isLoggedIn, function(req, res) {
-  db.user.findAll().then(function(users) {
-    res.render('user/messages', {users});
-  })
-});
 
 // Display all users
 app.get('/users', isLoggedIn, function(req, res) {
