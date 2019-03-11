@@ -94,28 +94,43 @@ app.post('/search', function(req, res) {
 
 // get trade page with comments and release info
 
-app.get('/trade', function(req, res) {
+app.get('/trade', function (req, res) {
   db.usersReleases.findAll({
-    where: {userId: req.user.id}
-  }).then(function(usersReleases) {
-    let tradeables = usersReleases.filter(function(release){
+    where: { userId: req.user.id }
+  }).then(function (usersReleases) {
+    let tradeables = usersReleases.filter(function (release) {
       return release.isTradeable
-    });
-    return tradeables;
-  }).then(function(tradeables) {
-    // Do this for each tradeable release..
-      db.release.findOne({
-          where: {id: tradeables[1].releaseId}
-        }).then(function(release){
-          console.log(release);
-        res.render('user/trade', {release: release, tradeables})
-    // res.json({tradeables})
+    }).map(function (userRelease) {
+      return function (callback) {
+        db.release.findOne({
+          where: { id: userRelease.releaseId }
+        }).then( function(release) { 
+          let tradeObj = {userRelease, release}
+          callback(null, tradeObj) 
+        })
+      }
     })
-  })
+    return tradeables;
+  }).then( function(tradeables) {
+    async.parallel(tradeables, function(err, results) { 
+      res.render('user/trade', {releases: results})
+      // res.json({releases: results});
+    });
+  });
 });
 
-
-
+//send message
+app.post('/messages', function(req, res) {
+  db.message.findOrCreate({
+    where: {
+      sendUserId: req.user.id,
+      recievedUserId: req.body.user.id
+    },
+    defaults: {message: req.body.message}
+  }).spread(function(message, created) {
+    res.redirect('/messages', {message});
+  })
+})
 
 // Add profile photo with Cloudinary
 app.get('/profile', isLoggedIn, function(req, res) {
@@ -145,7 +160,6 @@ app.post('/profile', upload.single('myFile'), function(req, res) {
 });
 
 // Update profile picture
-
 app.put('/profile', upload.single('myFile'), function(req, res) {
   cloudinary.uploader.upload(req.file.path, function(result) {
     db.photo.update({

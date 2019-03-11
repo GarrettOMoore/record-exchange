@@ -147,12 +147,12 @@ nav a {
 
 .profile-picture-box {
     margin-left: 420px;
-    min-width: 300px;
-    min-height: 300px;
-    max-width: 300px;
-    max-height: 300px;
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 300px;
+    /* max-width: 300px;
+    max-height: 300px; */
+    /* width: 100%;
+    height: 100%; */
     margin-top: 40px;
     border: 6px solid black;
     border-radius: 20%;
@@ -166,6 +166,7 @@ nav a {
     max-height: 300px;
     margin-top: 40px;
     border-radius: 10%;
+    object-fit: cover;
 }
 
 .name-display {
@@ -246,14 +247,14 @@ nav a {
     box-shadow:  1px 0px 1px 0px rgba(0,0,0,0.75);
 }
 
-#move-trade-btn {
-    margin-top: 35px;
+.move-trade-btn {
+    margin-top: 30px;
     font-family: 'Poiret One', cursive;
     display: inline-block;
     border: 2px solid black;
 }
 
-#move-trade-btn:hover {
+.move-trade-btn:hover {
     transform: translateY(1.5px);
     box-shadow: 1px 0px 1px 0px rgba(0,0,0,0.75);
 }
@@ -459,7 +460,7 @@ footer {
     max-height: 300px;
     width: 100%;
     height: 100%;
-    
+    object-fit: cover;
 }
 
 .one-user button {
@@ -581,5 +582,22 @@ footer {
     text-align: right;
     font-size: 24px;
     font-weight: bolder;
+    font-family: 'Poiret One', cursive;
+}
+
+
+.trade-album-img {
+    font-family: 'Poiret One', cursive;
+    margin: 30px;
+    font-size: 30px;
+}
+
+.trade-album-img p {
+    margin:20px;
+}
+
+.trade-album-info p {
+    padding: 30px;
+    font-size: 18px;
     font-family: 'Poiret One', cursive;
 }

@@ -17,16 +17,21 @@
 
 <h1 class="trade-head">TRADE SELECTIONS:</h1>
 
-    <img class="result-img" src = <%=release.imgUrl%>>
-    <h4><%=release.title%></h4>
-    <%= release.year %> <br>
-    <%let label = release.label%>
-    <% let splitLab = label.split(',')%>
-    <%= splitLab[0] %>
 
-<% for(let i=0;i<tradeables.length;i++) {%>
-    <h4>User Note:</h4>
-    <p><%= tradeables[i].comment %></p>
-<%}%>
+<%releases.forEach(function(release) {%>
+<section class="trade-album-img">
+<img class="result-img" src = <%=release.release.imgUrl%>>
+<p><%=release.release.title%></p>
+<p> <%= release.release.year %> <br> </p>
+<% let label = release.release.label %>
+<% let splitLab = label.split(',')%>
+<p> <%= splitLab[0]%> </p>
+
+<h4>User Note:</h4>
+<p><%= release.userRelease.comment %> </p>
+</section>
+<%})%>
+
+
 
 

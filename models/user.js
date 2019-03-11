@@ -51,6 +51,7 @@
       // associations can be defined here
       // models.user.belongsTo(models.photo);
       models.user.belongsToMany(models.release, {through: "usersReleases"});
+      models.user.belongsToMany(models.message, {through: "usersMessages"});
     };
   
     // Function to compare entered password to hashed password
