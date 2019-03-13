@@ -1,7 +1,6 @@
 body, html {
     margin: 0px;
     padding: 0px;
-    border: 6px solid black;
 }
 
 /* MAIN */
@@ -570,6 +569,30 @@ footer {
     border: 2px solid black;
 }
 
+.inbox-main {
+    margin-top: 30px;
+    font-family: 'Poiret One', cursive;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.message-sender {
+    font-size: 22px;
+    font-family: 'Poiret One', cursive;
+    font-weight: bolder;
+}
+
+.message-body {
+    font-size: 40px;
+    font-family: 'Poiret One', cursive;
+    font-weight: bolder;
+}
+
+.message-date {
+    font-size: 22px;
+    font-family: 'Poiret One', cursive;
+    font-weight: bolder;
+}
 /* TRADE PAGE */
 
 .trade-main {

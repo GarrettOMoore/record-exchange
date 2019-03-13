@@ -17,7 +17,26 @@
 </nav>
 
 <h1 class="page-name">MESSAGES:</h1>
-<h1 class="page-name">UNDER CONSTRUCTION</h1> 
+<section class="inbox-main">
+<% messages.forEach(function(message) {%>
+<% let sender = users.find(function(user) {%>
+    <%if (user.id === message.sendUserId) {%>
+    <% return user.name %>
+    <%}%>
+<% }) %>
+<%console.log(sender)%>
+<%console.log(message.sendUserId)%>
+<%if (sender.id === message.sendUserId) {%>
+    <%console.log("MAAAAATCH")%>
+    <%}%>
+<p>Sent From: <span class="message-sender"><%= sender.name %></span></p>
+<p class="message-body"><%= message.message%></p>
+<p>Sent at: <span class="message-date"><%=message.createdAt%></span></p>
+<%})%>
+</section>
+
+<h1 class="page-name">NEW MESSAGE:</h1>
+
 <form id="send-msg-form"method="POST" action="/messages">
     <p>Send to:</p>
     <select name='user'>
@@ -28,8 +47,6 @@
     <textarea id="msg-body" name="message" rows="4" cols="50"placeholder="Write your message here..."></textarea> <br>
     <input id="send-msg"class="btn" type="submit" value="Send Yr Message!">
 </form>
-
-<h1>Sent:</h1>
 
 
 
