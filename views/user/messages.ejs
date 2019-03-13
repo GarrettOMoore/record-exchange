@@ -15,7 +15,7 @@
     <a href="/users">Users</a>
     <a href="/map">Map</a>
 </nav>
-
+<%if (messages) {%>
 <h1 class="page-name">MESSAGES:</h1>
 <section class="inbox-main">
 <% messages.forEach(function(message) {%>
@@ -34,7 +34,6 @@
 <p>Sent at: <span class="message-date"><%=message.createdAt%></span></p>
 <%})%>
 </section>
-
 <h1 class="page-name">NEW MESSAGE:</h1>
 
 <form id="send-msg-form"method="POST" action="/messages">
@@ -47,6 +46,20 @@
     <textarea id="msg-body" name="message" rows="4" cols="50"placeholder="Write your message here..."></textarea> <br>
     <input id="send-msg"class="btn" type="submit" value="Send Yr Message!">
 </form>
+<%} else {%>
+<h1 class="page-name">NEW MESSAGE:</h1>
+
+<form id="send-msg-form"method="POST" action="/messages">
+    <p>Send to:</p>
+    <select name='user'>
+    <% users.forEach(function(user) { %>
+        <option value="<%= user.id %>"><%=user.name%></option>
+    <%})%>
+    </select> <br>
+    <textarea id="msg-body" name="message" rows="4" cols="50"placeholder="Write your message here..."></textarea> <br>
+    <input id="send-msg"class="btn" type="submit" value="Send Yr Message!">
+</form>
+<%}%>
 
 
 
