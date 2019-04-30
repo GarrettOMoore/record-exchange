@@ -17,7 +17,7 @@ const upload = multer({dest: './uploads/'});
 const cloudinary = require('cloudinary');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({
-    accessToken: process.env.MAP_BOX_KEY
+    accessToken: .MAP_BOX_KEY
 });
 
 app.set('view engine', 'ejs');

@@ -224,13 +224,15 @@ app.get('/map', function(req, res) {
 // Query mapbox with City and State
 app.get('/find', function(req, res) {
     geocodingClient.forwardGeocode({
-    query: "record shop " + req.query.city + ", " + req.query.state
+    query: "starbucks " 
+    // + req.query.city + ", " + req.query.state
     }).send().then(function(response) {
         let markers = [];
         response.body.features.forEach(function(feature){
             markers.push(feature.center);
         })
-        res.render('map/show', {markers});
+        res.json(markers)
+        // res.render('map/show', {markers});
     });
 });
 

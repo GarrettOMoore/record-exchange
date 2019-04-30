@@ -35,18 +35,3 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 })
 
-
-// close modal on window click
-// window.onclick = function(event) {
-//     if (event.target == mod) {
-//         imgs.forEach( (img,i) => {
-//             img.addEventListener('click', function(e){
-//                 console.log(e.target)
-//                 let mod = document.getElementById(`myModal${i}`);
-//                 // console.log(mod)
-//                 console.log(mod.style)
-//                 mod.style.display = 'none';
-//             })
-//         })
-//     }
-// }
